@@ -29,9 +29,6 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     photo = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     projects = orm.relationship("Projects", back_populates='user')
 
-    def __repr__(self):
-        return f"<Colonist> {self.id} {self.name} {self.email}"
-
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)
 

@@ -1,13 +1,11 @@
 from flask import Flask, request, make_response, abort, session, redirect, render_template
 from flask_login import LoginManager, login_user, login_required, logout_user
-from flask_restful import abort, Api, Resource
 from data import db_session
 from data.users import User
 from content.content import content
 from forms.users import RegisterForm, LoginForm
 import uuid as uuid
 import os
-import resources
 from functions import check_log
 from admin.admin import admin
 
@@ -16,7 +14,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Portfolio-secret-key-Ub5435h5H4'
 UPLOAD_FOLDER = 'static/images/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-api = Api(app)
 app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(content, url_prefix='/content')
 login_manager = LoginManager()
@@ -102,5 +99,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-    api.add_resource(resources.UsersResource, '/api/<int:user_id>')
-    app.run(port=8080, host='127.0.0.1', debug=False)
+    app.run(port=8000, host='127.0.0.1', debug=False)

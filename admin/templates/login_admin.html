@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="position-absolute top-50 start-50 translate-middle">
+{% for cat, msg in get_flashed_messages(True) %}
+<div class="flash {{cat}}">{{msg}}</div>
+{% endfor %}
+<form action="" method="Post">
+  <p align="center" ><label class="form-label"> Login: &nbsp <br> </label><input type="text" name="user"></p>
+  <p align="center" ><label class="form-label"> Password:  &nbsp <br>  </label><input type="text" name="password"></p>
+  <p align="center"> <input class="login_button" type="submit" value="Enter!"></p>
+</form>
+</div>
+{% endblock %}
