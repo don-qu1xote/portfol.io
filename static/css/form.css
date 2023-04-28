@@ -1,0 +1,19 @@
+form.login_form, form.register_form {
+    max-width: 400px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.class1 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+form.post_create {
+    max-width: 600px;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+
+}

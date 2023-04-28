@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profiles.css')}}">
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center my-4">Профили пользователей</h1>
+<div class="row row-cols-auto">
+{% for item in profiles%}
+  <div class="col my-4">
+    <div class="card" style="width: 18rem;">
+      <img src="{{ url_for('static', filename='images/' + item.photo) }}" class="card-img-top pic_size" alt="Profile_pic">
+      <div class="card-body">
+        <h5 class="card-title">{{item.name}} {{item.surname}}</h5>
+        <p class="card-text text-truncate">{{item.speciality}} <br>
+        {{item.about}} </p>
+        <a href="/content/profile/{{ item.username }}" class="btn btn-primary">Открыть профиль</a>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+<div class="empty my-4"> </div>
+<div class="row my-1">
+    <div class="col mx-auto text-center">
+      <button class="btn btn-primary  {% if page == 1 %} disabled {% endif%}">
+        <a class=" disabled text-light" href="/content/?page={{page - 1}}"> Назад </a>
+      </button>
+    </div>
+  <div class="col mx-auto text-center">
+      <button class="btn btn-primary {% if profiles == False %} disabled {% endif %}">
+        <a class="text-light" href="/content/?page={{page + 1}}"> Вперед </a>
+      </button>
+    </div>
+</div>
+<div class="empty my-4"> </div>
+{% endblock %}

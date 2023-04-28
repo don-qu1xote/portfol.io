@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css')}}">
+{% endblock %}
+
+{% block content %}
+    <h4 class="text-center text-muted my-3"> Профиль пользователя {{params['username']}}</h4>
+    <div class="container">
+        <div class="row gx-5">
+            <div class="col-lg-4 col-md-5 d-flex justify-content-center block_pic">
+                <img class="profile_pic" src="{{ url_for('static', filename='images/' + params['photo']) }}" alt="ProfilePicture">
+            </div>
+            <div class="col-lg-8 col-md-7 my-4">
+                <h3> Имя: {{params['name']}} {{params['surname']}}  </h3>
+                <h3>  Email: {{params['email'] }}</h3>
+                <h3> Специальность: {{params['speciality']}}</h3>
+                {% if params['GIT'] != '' %}<a class="text-reset" href="{{params['GIT']}}"><h3> Github profile </h3></a> {% endif %}
+                {% if params['VK'] != '' %}<a class="text-reset" href="{{params['VK']}}"> <h3> Vkontakte profile </h3></a> {% endif %}
+                {% if params['TG'] != '' %}<a class="text-reset" href="{{params['TG']}}"> <h3> Telegram profile </h3></a> {% endif %}
+                <h3> Дата создания: {{params['created_date']}}</h3>
+            </div>
+        </div>
+        <div class="card my-3">
+            <div class="card-header"> About: </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                <p> {{params['info']}}</p>
+                </blockquote>
+            </div>
+        </div>
+        </div>
+        {% if user|string  == params['id']|string %}
+        <div class="buttons">
+            <a class="btn btn-primary " href="/content/project_add" role="button"> Создать проект </a>
+            <a class="btn btn-warning " href="/content/profile/{{params['username']}}/edit" role="button"> Редактировать профиль </a>
+            <button class="btn btn-danger " onclick="confirmAction()">Удалить профиль</button>
+        </div>
+        {% endif %}
+        <div class="row d-flex align-items-center my-4">
+        {% for project in projects %}
+            <div class="col "></div>
+                <div class="card" style="width: 18rem;">
+                <img src="" class="card-img-top" alt="">
+                <div class="card-body">
+                    <p class="card-text">{{project['title']}}</p>
+                    <a class="btn btn-success " href="/content/project/{{project['id']}}" role="button"> Открыть проект </a>
+
+                  </div>
+                </div>
+        {% endfor %}
+        <script>
+            function confirmAction() {
+        if (confirm("Вы уверены, что хотите навсегда удалить профиль?")) {
+            window.location.href = " /content/delete?confirmed=True";}}
+        </script>
+    </div>
+{% endblock %}

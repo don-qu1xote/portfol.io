@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/project.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row">
+        <div class="col my-4">
+            <h2> {{data['title']}}</h2>
+        </div>
+        <div class="col   disciption">
+            <p class="my-1"> Автор: <a class='name' href="/content/profile/{{data['user']['username']}}"> {{data['user']['name']}} </a></p>
+            <p> Дата написания: {{data['created_date']}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <p class="content_text"> {{data['content']}} </p>
+    </div>
+</div>
+<div id="carouselExampleFade" class="carousel slide carousel-fade">
+  <div class="carousel-inner ">
+      {% for item in pics %}
+        <div class="carousel-item mx-auto {% if loop.first %} active {% endif %}">
+      {% set path = data['path'] %}
+        <img class="mx-auto d-block w-50 my-2" src="{{ url_for('static', filename=path ~ '/' ~ item) }}" alt="ProfilePicture">
+        </div>
+      {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Предыдущий</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Следующий</span>
+  </button>
+</div>
+{% if user|string  == data['user']['id']|string %}
+        <div class="buttons my-2">
+            <button class="btn btn-danger " onclick="confirmAction()">Удалить проект</button>
+        </div>
+{% endif %}
+<script>
+function confirmAction() {
+        if (confirm("Вы уверены, что хотите навсегда удалить проект?")) {
+            window.location.href = " /content/delete_post?id={{data['id']}}";}}
+</script>
+{% endblock %}

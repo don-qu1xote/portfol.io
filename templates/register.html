@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form.css')}}">
+{% endblock %}
+
+
+{% block content %}
+<h1 class="my-5">Регистрация</h1>
+<form class="register_form" action="" method="post" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <h4> Шаг 1: Основные данные</h4>
+    <p>
+        {{ form.email.label }}<br>
+        {{ form.email(class="form-control", type="email") }}<br>
+        {% for error in form.email.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p class="my-1">
+        {{ form.password.label }}<br>
+        {{ form.password(class="form-control", type="password") }}<br>
+        {% for error in form.password.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p class="my-1">
+        {{ form.password_again.label }}<br>
+        {{ form.password_again(class="form-control", type="password") }}<br>
+        {% for error in form.password_again.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <h4> Шаг 2: Данные профиля </h4>
+    <p>
+        {{ form.name.label }}<br>
+        {{ form.name(class="form-control") }}<br>
+        {% for error in form.name.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.surname.label }}<br>
+        {{ form.surname(class="form-control") }}<br>
+        {% for error in form.surname.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p class="my-1">
+        {{ form.username.label }}<br>
+        {{ form.username(class="form-control") }}<br>
+    </p>
+    <p>
+        {{ form.speciality.label }}
+        {% for subfield in form.speciality %}
+            <div class="form-check">
+                {{ subfield() }}
+                {{ subfield.label(class_="form-check-label") }}
+            </div>
+        {% endfor %}
+    </p>
+    <p class="my-1">
+        {{ form.GIT.label }}<br>
+        {{ form.GIT(class="form-control") }}<br>
+    </p>
+    <p class="my-1">
+        {{ form.VK.label }}<br>
+        {{ form.VK(class="form-control") }}<br>
+    </p>
+    <p class="my-1">
+        {{ form.TG.label }}<br>
+        {{ form.TG(class="form-control") }}<br>
+    </p>
+    <p>
+        {{ form.about.label }}<br>
+        {{ form.about(class="form-control") }}<br>
+        {% for error in form.about.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <h4> Шаг 3: Фотография профиля</h4>
+    <p>
+        {{ form.csrf_token }}
+        {{ form.photo.label  }} <br> <br>
+        {{ form.photo }}
+        <br> <br>
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    {{message}}
+</form>
+{% endblock %}

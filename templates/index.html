@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
+{% endblock %}
+{% block content %}
+
+<div class="container">
+  <div class="block-text position-absolute top-50 start-50 translate-middle">
+    <p class="title-text">Portfol.io</p>
+  </div>
+  <br>
+</div>
+<div class="container" style="height: 795px;"></div>
+<div class="container">
+  <div class="row justify-content-md-center ">
+    <div class="col-md-7">
+      <img src="{{ url_for('static', filename='img/bg1.png')}}" alt="teamwork" width="450px">
+    </div>
+    <div class="col-5 col-md-4 d-flex align-items-center">
+      <div>
+      <h1> Portfolio - </h1>
+      <p> это бесплатный сервис для создания собственного портфолио с кейсами. При помощи нашего сервиса можно создавать
+        презентации проектов и хранить доступ к ним при помощи одной ссылки!
+         </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-4">
+  <div class="row justify-content-md-center ">
+    <div class="col-md-6 mx-3 d-flex align-items-center">
+      <div>
+      <h1> Проще простого!</h1>
+      <p> Быстрая регистрация а также удобный интерфейс дают возможность каждому создать свой профиль с презентациями проектов! </p>
+        </div>
+    </div>
+    <div class="col-5 col-md-4">
+      <div>
+        <img src="{{ url_for('static', filename='img/bg2.png')}}" alt="find" width="450px">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div  class="container my-5">
+  <div class="row justify-content-md-center my-5 ">
+    <img src="{{ url_for('static', filename='img/bg3.png')}}" alt="team" style="width: 60%;">
+  </div>
+  <div class="row justify-content-md-center ">
+    <div class="col-md-6 mx-3">
+      <div>
+        <h1> Скорее присоединяйся к нам! </h1>
+        <p> Десятки авторов, будь это дизайнеры или data-science специалисты, уже выбрали Portfol.io! </p>
+      </div>
+    </div>
+    <div class="col-5 col-md-4 d-flex align-items-center">
+      <button type="button" class="btn btn-lg btn-dark d-flex align-items-center">
+        <p> Присоединиться!</p>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

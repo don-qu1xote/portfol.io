@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form.css')}}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <h1 class="my-5">Регистрация</h1>
+    <form class="register_form" action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+        {{ form.name.label }}<br>
+        {{ form.name() }}
+      </p>
+      <p>
+        {{ form.surname.label }}<br>
+        {{ form.surname() }}
+      </p>
+
+        <p>
+             {{ form.speciality.label }}
+        {% for subfield in form.speciality %}
+            <div class="form-check">
+                {{ subfield() }}
+                {{ subfield.label(class_="form-check-label") }}
+            </div>
+        {% endfor %}
+        <p>
+        {{ form.vk.label }}<br>
+        {{ form.vk() }}
+      </p>
+      <p>
+        {{ form.telegram.label }}<br>
+        {{ form.telegram() }}
+      </p>
+
+        </p>
+        {{ form.csrf_token }}
+        {{ form.file.label }} {{ form.file() }}
+
+        <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+        {{message}}
+    </form>
+</div>
+<div class="container" style="height: 26px;"></div>
+{% endblock %}

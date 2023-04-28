@@ -1,0 +1,18 @@
+.block_pic {
+    border: 5px solid black;
+    border-radius: 10px;
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+}
+
+.profile_pic {
+        height: 100%;
+        width: auto;
+        object-fit: cover;
+
+}
+
+.ctn {
+    height:100px;
+}

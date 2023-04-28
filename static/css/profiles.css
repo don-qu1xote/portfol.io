@@ -1,0 +1,10 @@
+.pic_size {
+    height: 286px;
+    width: auto;
+    object-fit: cover;
+
+}
+
+.empty {
+    height: 25px;
+}
