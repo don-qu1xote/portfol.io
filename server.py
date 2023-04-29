@@ -103,4 +103,4 @@ def main():
 if __name__ == "__main__":
     main()
     api.add_resource(resources.UsersResource, '/api/<int:user_id>')
-    app.run(port=8888, host='127.0.0.1', debug=False)
+    app.run(port=8080, host='127.0.0.1', debug=False)
